@@ -1,0 +1,31 @@
+.login {
+  height: 100%;
+  width: 50;
+  position: relative;
+}
+
+.login__mainbg {
+  width: 100vw;
+  height: 100vh;
+  background: url(./assets/Login_background.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+#center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 30rem;
+}
+
+.login__main {
+  font-family: "Roboto", sans-serif;
+}
+
+.login__box {
+  background: whitesmoke;
+}
