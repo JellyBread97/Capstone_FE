@@ -1,0 +1,49 @@
+.section.mixologists {
+  display: block;
+}
+
+.mixologists-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-gap: 1.5em;
+  margin-top: 2em;
+}
+
+.mixologist-card {
+  display: flex;
+  height: 120px;
+  background-color: var(--background-color);
+  border-radius: 5px;
+  overflow: hidden;
+  img {
+    height: 100%;
+    width: 120px;
+    border-radius: 5px;
+    box-shadow: 0 3px 6px var(--shadow-color);
+  }
+  .mixologist-card-info {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-bottom: 0.5em;
+    padding-left: 1em;
+    .mixologist-card-name {
+      font-size: 1.2em;
+      font-weight: 800;
+      color: var(--text-color);
+    }
+    .mixologist-recipe-count,
+    .mixologist-date {
+      color: var(--text-light);
+      font-size: 1.2em;
+    }
+    .mixologist-icon {
+      font-size: 1.2em;
+      svg {
+        margin-right: 0.5em;
+        color: #ff0056;
+      }
+    }
+  }
+}
