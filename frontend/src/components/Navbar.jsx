@@ -1,4 +1,5 @@
 import React from "react";
+import { Link, useLocation } from "react-router-dom";
 import { useState } from "react";
 import Sidebar from "./Sidebar";
 import {
@@ -10,6 +11,7 @@ import {
 
 function Navbar() {
   const [showSidebar, setShowSidebar] = useState(false);
+  const location = useLocation();
   const links = [
     {
       name: "Home",
@@ -18,17 +20,17 @@ function Navbar() {
     },
     {
       name: "Recipes",
-      path: "/",
+      path: "/recipes",
       icon: faList,
     },
     {
       name: "Settings",
-      path: "/",
+      path: "/settings",
       icon: faCog,
     },
     {
       name: "Login",
-      path: "/",
+      path: "/login",
       icon: faUser,
     },
   ];
@@ -45,14 +47,14 @@ function Navbar() {
         </a>
         <div className="nav-links">
           {links.map((link) => (
-            <a href="#!" key={link.name}>
+            <Link
+              className={location.pathname == link.path ? "active" : ""}
+              to={link.path}
+              key={link.name}
+            >
               {link.name}
-            </a>
+            </Link>
           ))}
-          {/* <a href="#!">Home</a>
-          <a href="#!">Recipes</a>
-          <a href="#!">Settings</a>
-          <a href="#!">Login</a> */}
         </div>
         <div
           onClick={() => setShowSidebar(true)}

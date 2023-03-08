@@ -85,7 +85,7 @@ const Login = () => {
               variant="outlined"
               placeholder="Password"
             />
-            <Link to="/home" style={{ textDecoration: "none" }}>
+            <Link to="/" style={{ textDecoration: "none" }}>
               <Button
                 endIcon={isSignup ? <HowToRegIcon /> : <LocalBarIcon />}
                 type="submit"
