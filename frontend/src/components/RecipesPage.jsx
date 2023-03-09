@@ -34,7 +34,7 @@ function RecipesPage() {
     {
       title: "Liquid Special",
       image: "/img/gallery/10.jpg",
-      authorImg: "/img/bartenders/1-alan.jpg",
+      authorImg: "/img/bartenders/3-alan.jpg",
     },
   ].sort(() => Math.random() - 0.5);
   return (
