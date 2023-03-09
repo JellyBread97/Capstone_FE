@@ -20,9 +20,15 @@ function Footer() {
       </div>
       <div className="footer-section">
         <p className="title">Socials</p>
-        <p>LinkedIn</p>
-        <p>GitHub</p>
-        <p>Discord</p>
+        <a href="https://www.linkedin.com/in/kotas-martin/">
+          <p>LinkedIn</p>
+        </a>
+        <a href="https://github.com/JellyBread97">
+          <p>GitHub</p>
+        </a>
+        <a href="discordapp.com/users/426796788457013259">
+          <p>Discord</p>
+        </a>
       </div>
     </div>
   );
