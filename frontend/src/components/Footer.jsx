@@ -15,7 +15,7 @@ function Footer() {
       <div className="footer-section">
         <p className="title">Contact Us</p>
         <a href="mailto:kotasmartin1997@gmail.com">
-          <p>kotasmartin1997@gmail.com</p>
+          <p>Email Me</p>
         </a>
         <a href="tel:+447872622451">
           <p>🇬🇧 +44 7872 622451</p>
