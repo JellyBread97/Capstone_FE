@@ -10,7 +10,7 @@ export default function Sidebar({ links, close }) {
         <Link
           to={link.path}
           className={
-            location.pathname == link.path
+            location.pathname === link.path
               ? "sidebar-link active"
               : "sidebar-link"
           }

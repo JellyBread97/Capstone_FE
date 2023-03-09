@@ -42,13 +42,13 @@ function Navbar() {
   return (
     <>
       <div className="navbar container">
-        <a href="#!" className="logo">
+        <Link to="/" className="logo">
           <span>L</span>iquid<span>L</span>ibrary
-        </a>
+        </Link>
         <div className="nav-links">
           {links.map((link) => (
             <Link
-              className={location.pathname == link.path ? "active" : ""}
+              className={location.pathname === link.path ? "active" : ""}
               to={link.path}
               key={link.name}
             >

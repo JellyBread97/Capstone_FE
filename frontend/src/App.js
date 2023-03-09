@@ -5,7 +5,6 @@ import { createTheme, ThemeProvider } from "@mui/material";
 import HomePage from "./components/HomePage";
 import RecipesPage from "./components/RecipesPage";
 import SettingsPage from "./components/SettingsPage";
-import Navbar from "./components/Navbar";
 
 const robotoFont = createTheme({
   typography: {
