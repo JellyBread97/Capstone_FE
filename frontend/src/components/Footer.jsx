@@ -14,9 +14,15 @@ function Footer() {
       </div>
       <div className="footer-section">
         <p className="title">Contact Us</p>
-        <p>kotasmartin1997@gmail.com</p>
-        <p>+44 7872 622451</p>
-        <p>+420 736 485 279</p>
+        <a href="mailto:kotasmartin1997@gmail.com">
+          <p>kotasmartin1997@gmail.com</p>
+        </a>
+        <a href="tel:+447872622451">
+          <p>🇬🇧 +44 7872 622451</p>
+        </a>
+        <a href="tel:+420736485279">
+          <p>🇨🇿 +420 736 485 279</p>
+        </a>
       </div>
       <div className="footer-section">
         <p className="title">Socials</p>
