@@ -1,12 +1,15 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInstagram } from "@fortawesome/free-brands-svg-icons";
+import { Grid } from "@mui/material";
 
 function MixologistCard({ mixologist }) {
   return (
-    <div className="mixologist-card">
-      <img src={mixologist.img} alt="" />
-      <div className="mixologist-card-info">
+    <Grid container className="mixologist-card">
+      <Grid item xs={5}>
+        <img src={mixologist.img} alt="" />
+      </Grid>
+      <Grid item xs={7} className="mixologist-card-info">
         <h3 className="mixologist-card-name">{mixologist.name}</h3>
         <p className="mixologist-recipe-count">
           Recipes: <b>{mixologist.recipesCount}</b>
@@ -17,8 +20,8 @@ function MixologistCard({ mixologist }) {
         <p className="mixologist-icon">
           <FontAwesomeIcon icon={faInstagram} />
         </p>
-      </div>
-    </div>
+      </Grid>
+    </Grid>
   );
 }
 
