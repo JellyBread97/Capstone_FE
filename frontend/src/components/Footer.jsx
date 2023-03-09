@@ -20,13 +20,25 @@ function Footer() {
       </div>
       <div className="footer-section">
         <p className="title">Socials</p>
-        <a href="https://www.linkedin.com/in/kotas-martin/">
+        <a
+          target="_blank"
+          rel="noreferrer noopener"
+          href="https://www.linkedin.com/in/kotas-martin/"
+        >
           <p>LinkedIn</p>
         </a>
-        <a href="https://github.com/JellyBread97">
+        <a
+          target="_blank"
+          rel="noreferrer noopener"
+          href="https://github.com/JellyBread97"
+        >
           <p>GitHub</p>
         </a>
-        <a href="discordapp.com/users/426796788457013259">
+        <a
+          target="_blank"
+          rel="noreferrer noopener"
+          href="discordapp.com/users/426796788457013259"
+        >
           <p>Discord</p>
         </a>
       </div>
