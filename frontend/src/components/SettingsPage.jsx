@@ -3,26 +3,27 @@ import Footer from "./Footer";
 import Navbar from "./Navbar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 
-function SettingsPage() {
-  const [settings, setSettings] = useState({
-    "--background-color": "#fff",
-    "--background-light": "#fff",
-    "--primary-color": "rgb(255, 0, 86)",
-    "--shadow-color": "rgba(0, 0, 0, 0.2)",
-    "--text-color": "#0A0A0A",
-    "--text-light": "#575757",
-    "--font-size": "16px",
-    "--animation-speed": 1,
-  });
+function SettingsPage({
+  settings,
+  setSettings,
+  theme,
+  setTheme,
+  primaryColor,
+  setPrimaryColor,
+  fontSize,
+  setFontSize,
+  animationSpeed,
+  setAnimationSpeed,
+}) {
   useEffect(() => {
     const root = document.documentElement;
     for (let key in settings) {
       root.style.setProperty(key, settings[key]);
     }
   }, [settings]);
-  const [theme, setTheme] = useState("light");
+
   const themes = [
     {
       "--background-color": "#fff",
@@ -112,9 +113,6 @@ function SettingsPage() {
     setSettings(_settings);
   }
 
-  const [primaryColor, setPrimaryColor] = useState(0);
-  const [fontSize, setFontSize] = useState(1);
-  const [animationSpeed, setAnimationSpeed] = useState(1);
   return (
     <div>
       <Navbar />
