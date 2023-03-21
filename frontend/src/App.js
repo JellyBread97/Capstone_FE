@@ -6,6 +6,8 @@ import HomePage from "./components/HomePage";
 import RecipesPage from "./components/RecipesPage";
 import SettingsPage from "./components/SettingsPage";
 import { useState } from "react";
+import CocktailDetails from "./components/CocktailDetails";
+import AddNewRecipe from "./components/AddNewRecipe";
 
 const robotoFont = createTheme({
   typography: {
@@ -55,6 +57,8 @@ function App() {
             }
           />
           <Route path="/login" element={<Login />} />
+          <Route path="/cocktail" element={<CocktailDetails />} />
+          <Route path="/addNew" element={<AddNewRecipe />} />
         </Routes>
       </Router>
     </ThemeProvider>

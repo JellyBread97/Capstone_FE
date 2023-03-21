@@ -1,29 +1,81 @@
 import React, { useState } from "react";
-import { Box, Button, Input, TextField, Typography } from "@mui/material";
+import { Box, Button, TextField, Typography } from "@mui/material";
 import LocalBarIcon from "@mui/icons-material/LocalBar";
 import HowToRegIcon from "@mui/icons-material/HowToReg";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { saveTokenAction, saveUserAction } from "../redux/actions";
+import { useDispatch } from "react-redux";
 
 const Login = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
   const [isSignup, setIsSignup] = useState(false);
-  const [inputs, setInputs] = useState({
-    name: "",
-    email: "",
-    password: "",
-  });
-  const handleChange = (e) => {
-    setInputs((prevState) => ({
-      ...prevState,
-      [e.target.name]: e.target.value,
-    }));
-  };
+
+  const dispatch = useDispatch();
+
+  const navigate = useNavigate();
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(inputs);
   };
   const resetState = () => {
     setIsSignup(!isSignup);
-    setInputs({ name: "", email: "", password: "" });
+    setEmail("");
+    setName("");
+    setPassword("");
+  };
+
+  const submitHandler = async () => {
+    if (isSignup) {
+      const user = { email, password, name };
+
+      try {
+        const options = {
+          method: "POST",
+          body: JSON.stringify(user),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        };
+        const response = await fetch(
+          `${process.env.REACT_APP_BE_URL}/users/register`,
+          options
+        );
+        if (response.ok) {
+          const data = await response.json();
+          dispatch(saveUserAction(data.user));
+          dispatch(saveTokenAction(data.accessToken));
+          navigate("/");
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    } else {
+      const user = { email, password };
+
+      try {
+        const options = {
+          method: "POST",
+          body: JSON.stringify(user),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        };
+        const response = await fetch(
+          `${process.env.REACT_APP_BE_URL}/users/login`,
+          options
+        );
+        if (response.ok) {
+          const data = await response.json();
+          dispatch(saveUserAction(data.user));
+          dispatch(saveTokenAction(data.accessToken));
+          navigate("/");
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    }
   };
 
   return (
@@ -58,9 +110,8 @@ const Login = () => {
             </Typography>
             {isSignup && (
               <TextField
-                onChange={handleChange}
+                onChange={(e) => setName(e.target.value)}
                 name="name"
-                value={inputs.name}
                 margin="normal"
                 type={"text"}
                 variant="outlined"
@@ -68,38 +119,37 @@ const Login = () => {
               />
             )}
             <TextField
-              onChange={handleChange}
+              onChange={(e) => setEmail(e.target.value)}
               name="email"
-              value={inputs.email}
               margin="normal"
               type={"email"}
               variant="outlined"
               placeholder="Email"
             />
             <TextField
-              onChange={handleChange}
+              onChange={(e) => setPassword(e.target.value)}
               name="password"
-              value={inputs.password}
               margin="normal"
               type={"password"}
               variant="outlined"
               placeholder="Password"
             />
-            <Link to="/" style={{ textDecoration: "none" }}>
-              <Button
-                endIcon={isSignup ? <HowToRegIcon /> : <LocalBarIcon />}
-                type="submit"
-                sx={{
-                  marginTop: 2,
-                  borderRadius: 3,
-                  width: 225,
-                }}
-                variant="contained"
-                color="warning"
-              >
-                {isSignup ? "Signup" : "Login"}
-              </Button>
-            </Link>
+
+            <Button
+              endIcon={isSignup ? <HowToRegIcon /> : <LocalBarIcon />}
+              onClick={() => submitHandler()}
+              type="submit"
+              sx={{
+                marginTop: 2,
+                borderRadius: 3,
+                width: 225,
+              }}
+              variant="contained"
+              color="warning"
+            >
+              {isSignup ? "Signup" : "Login"}
+            </Button>
+
             <Button
               endIcon={isSignup ? <LocalBarIcon /> : <HowToRegIcon />}
               onClick={resetState}

@@ -73,12 +73,8 @@ function SettingsPage({
       value: "12px",
     },
     {
-      title: "Default",
-      value: "16px",
-    },
-    {
       title: "Large",
-      value: "20px",
+      value: "16px",
     },
   ];
 

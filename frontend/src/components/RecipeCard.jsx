@@ -1,20 +1,27 @@
+import { Button } from "@mui/material";
 import React from "react";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { saveCocktailAction } from "../redux/actions";
 import CustomImage from "./CustomImage";
 
 function RecipeCard({ recipe }) {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const moveToRecipe = () => {
+    dispatch(saveCocktailAction(recipe));
+    navigate("/cocktail");
+  };
   return (
     <div className="recipe-card">
-      <CustomImage imgSrc={recipe.image} pt="65%" />
+      <CustomImage imgSrc={recipe.img} pt="65%" />
       <div className="recipe-card-info">
-        <img className="author-img" src={recipe.authorImg} alt="" />
-        <p className="recipe-title">{recipe.title}</p>
-        <p className="recipe-desc">
-          This is simple description of recipe, it's yummy and you gotta try it
-          yourself!
-        </p>
-        <a className="view-btn" href="#!">
+        <img className="author-img" src={recipe.creator.avatar} alt="" />
+        <p className="recipe-title">{recipe.name}</p>
+        <p className="recipe-desc">{recipe.desc}</p>
+        <Button className="view-btn" onClick={moveToRecipe}>
           VIEW RECIPE
-        </a>
+        </Button>
       </div>
     </div>
   );

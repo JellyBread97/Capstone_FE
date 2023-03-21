@@ -43,5 +43,7 @@
     color: var(--primary-color);
     margin-top: 0.75em;
     display: inline-block;
+    cursor: pointer;
+    z-index: 99;
   }
 }
