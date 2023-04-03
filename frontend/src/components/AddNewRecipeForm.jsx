@@ -3,7 +3,14 @@ import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
 
-import { Autocomplete, Button } from "@mui/material";
+import {
+  Autocomplete,
+  Button,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+} from "@mui/material";
 import { useSelector } from "react-redux";
 import { fetchCocktailsAction } from "../redux/actions";
 import { useNavigate } from "react-router-dom";
@@ -19,6 +26,27 @@ export default function AddNewRecipeForm() {
   const [method, setMethod] = useState("");
   const [ings, setIngs] = useState([]);
 
+  const handleChange = (event, ing) => {
+    const ingsIndex = ings.findIndex((i) => i._id === ing._id);
+    const ingsOrig = ings;
+    ingsOrig[ingsIndex] = { ...ingsOrig[ingsIndex], unit: event.target.value };
+    setIngs(ingsOrig);
+    console.log(ingsOrig);
+  };
+  const amountChange = (event, ing) => {
+    const ingsIndex = ings.findIndex((i) => i._id === ing._id);
+    const ingsOrig = ings;
+    ingsOrig[ingsIndex] = {
+      ...ingsOrig[ingsIndex],
+      amount: event.target.value,
+    };
+    setIngs(ingsOrig);
+    console.log(event.target.value);
+    console.log(ingsOrig);
+  };
+
+  const units = ["g", "ml", "cl", "pc", "drop", "dash"];
+
   const submitHandler = async () => {
     const recipe = {
       name,
@@ -28,11 +56,11 @@ export default function AddNewRecipeForm() {
       method,
       ingredients: [],
     };
+    // eslint-disable-next-line array-callback-return
     ings.map((ing) => {
-      const abc = { ingredient: ing._id, amount: 10, unit: "g" };
+      const abc = { ingredient: ing._id, amount: ing.amount, unit: ing.unit };
       recipe.ingredients.push(abc);
     });
-
     try {
       const options = {
         method: "POST",
@@ -130,14 +158,52 @@ export default function AddNewRecipeForm() {
                 sx={{ width: "500px" }}
               />
             </Grid>
-
-            <Button
-              variant="outlined"
-              className="submitButton"
-              onClick={() => submitHandler()}
-            >
-              Submit
-            </Button>
+            <div className="ingsDiv">
+              {ings.length !== 0 ? (
+                ings.map((ing) => (
+                  <div className="d-flex flex-row">
+                    <div>
+                      {" "}
+                      <h2>{ing.name}</h2>
+                    </div>
+                    <div>
+                      <div>
+                        {" "}
+                        <input
+                          type={"number"}
+                          onChange={(e) => amountChange(e, ing)}
+                        ></input>
+                        <FormControl className="unitInput">
+                          <InputLabel id="demo-simple-select-label">
+                            Unit
+                          </InputLabel>
+                          <Select
+                            labelId="demo-simple-select-label"
+                            id="demo-simple-select"
+                            value={ings[0].unit}
+                            label="Unit"
+                            onChange={(event) => handleChange(event, ing)}
+                          >
+                            {units.map((u) => (
+                              <MenuItem value={u}>{u} </MenuItem>
+                            ))}
+                          </Select>
+                        </FormControl>
+                      </div>
+                    </div>
+                  </div>
+                ))
+              ) : (
+                <></>
+              )}
+              <Button
+                variant="outlined"
+                className="submitButton"
+                onClick={() => submitHandler()}
+              >
+                Submit
+              </Button>
+            </div>
           </Grid>
         </React.Fragment>
       </div>

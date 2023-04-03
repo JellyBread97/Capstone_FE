@@ -4,8 +4,16 @@ export const SAVE_TOKEN = "SAVE_TOKEN";
 export const FETCH_COCKTAILS = "FETCH_COCKTAILS";
 export const SAVE_COCKTAIL = "SAVE_COCKTAIL";
 export const SAVE_ING = "SAVE_ING";
+export const SAVE_SETTINGS = "SAVE_SETTINGS";
 
 const apiUrl = process.env.REACT_APP_BE_URL;
+
+export const saveSettingsAction = (settings) => {
+  return {
+    type: SAVE_SETTINGS,
+    payload: settings,
+  };
+};
 
 export const saveIngAction = (ing) => {
   return {

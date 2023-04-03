@@ -10,6 +10,15 @@ import { saveTokenAction } from "../redux/actions";
 import UserSettings from "./UserSettings";
 
 function Navbar() {
+  useEffect(() => {
+    const root = document.documentElement;
+    for (let key in savedSettings) {
+      root.style.setProperty(key, savedSettings[key]);
+    }
+  }, []);
+
+  const savedSettings = useSelector((state) => state.user.settings);
+
   const [anchorEl, setAnchorEl] = useState(null);
   const token = useSelector((state) => state.user.accessToken);
   const navigate = useNavigate();

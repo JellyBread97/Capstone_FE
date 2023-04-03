@@ -4,6 +4,8 @@ import Navbar from "./Navbar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { saveSettingsAction } from "../redux/actions";
 
 function SettingsPage({
   settings,
@@ -22,7 +24,14 @@ function SettingsPage({
     for (let key in settings) {
       root.style.setProperty(key, settings[key]);
     }
+    dispatch(saveSettingsAction(settings));
   }, [settings]);
+  const dispatch = useDispatch();
+  const savedSettings = useSelector((state) => state.user.settings);
+
+  useEffect(() => {
+    setSettings(savedSettings);
+  }, []);
 
   const themes = [
     {

@@ -58,7 +58,6 @@ img {
 }
 
 .custom-image {
-  background-color: red;
   height: 0;
   width: 100%;
   position: relative;
@@ -476,4 +475,44 @@ div.MuiPaper-root:nth-child(1) {
 .userButton {
   width: 100%;
   color: #53bdeb !important;
+}
+
+.ingsDiv {
+  width: 25vw;
+  margin-top: 1em;
+  div {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: start;
+    padding-block: 0.2em;
+    input {
+      width: 4em;
+      height: 2em;
+      margin-right: 1em;
+    }
+
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+    input[type="number"] {
+      -moz-appearance: textfield;
+    }
+    .unitInput {
+      width: 7em;
+      height: 2em;
+      margin-bottom: 0.3em;
+      div {
+        div {
+          padding: 0;
+        }
+      }
+    }
+  }
+}
+#demo-simple-select-label {
+  font-size: 1em;
+  padding-bottom: 0.5em;
 }

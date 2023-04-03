@@ -2,7 +2,7 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
-function PreviousSearches() {
+function PreviousSearches(params) {
   const searches = [
     "rum",
     "cuba libre",
@@ -15,20 +15,26 @@ function PreviousSearches() {
   ];
   return (
     <div className="previous-searches section">
-      <h2>Previous Searches</h2>
+      <h2>Popular Searches</h2>
       <div className="previous-searches-container">
         {searches.map((search, index) => (
           <div
             key={index}
             style={{ animationDelay: index * 0.1 + "s" }}
             className="search-item"
+            onClick={() => params.setQuery(search)}
           >
             {search}
           </div>
         ))}
       </div>
       <div className="search-box">
-        <input type="text" placeholder="Search"></input>
+        <input
+          type="text"
+          placeholder="Search"
+          value={params.query}
+          onChange={(e) => params.setQuery(e.target.value)}
+        ></input>
         <button className="btn">
           <FontAwesomeIcon icon={faSearch} />
         </button>
